@@ -1,0 +1,5 @@
+run_id=32423152962
+source=dev exact Beta UI generation
+package=com.harleytg.forum
+versionCode=10000076
+channel=stable
