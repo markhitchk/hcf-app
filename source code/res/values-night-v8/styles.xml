@@ -5,19 +5,85 @@
         <item name="android:windowActionModeOverlay">true</item>
         <item name="android:alertDialogTheme">@style/Theme.HCF.Dialog.Alert</item>
         <item name="android:fontFamily">sans</item>
+        <item name="android:textColorPrimary">@color/hcf_text</item>
+        <item name="android:textColorSecondary">@color/hcf_muted</item>
+        <item name="android:textColorHint">@color/hcf_hint</item>
         <item name="android:colorAccent">@color/hcf_cyan</item>
+        <item name="android:colorControlNormal">@color/hcf_muted</item>
+        <item name="android:colorControlActivated">@color/hcf_cyan_bright</item>
+        <item name="android:colorControlHighlight">@color/hcf_nav_pressed</item>
+        <item name="android:buttonStyle">@style/HcfButton</item>
+        <item name="android:imageButtonStyle">@style/HcfImageButton</item>
+        <item name="android:editTextStyle">@style/HcfEditText</item>
+        <item name="android:switchStyle">@style/HcfSwitch</item>
+        <item name="android:checkboxStyle">@style/HcfCheckBox</item>
+        <item name="android:radioButtonStyle">@style/HcfRadioButton</item>
         <item name="android:statusBarColor">@color/hcf_bg</item>
         <item name="android:navigationBarColor">@color/hcf_bg</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
+
     <style name="Theme.HCF.Dialog.Alert" parent="@android:style/Theme.Material.Dialog.Alert">
         <item name="android:textColorPrimary">@color/hcf_text</item>
         <item name="android:textColorSecondary">@color/hcf_muted</item>
+        <item name="android:textColorHint">@color/hcf_hint</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
         <item name="android:windowMinWidthMajor">88%</item>
         <item name="android:windowMinWidthMinor">88%</item>
         <item name="android:colorAccent">@color/hcf_cyan_bright</item>
+        <item name="android:colorControlNormal">@color/hcf_muted</item>
+        <item name="android:colorControlActivated">@color/hcf_cyan_bright</item>
+        <item name="android:colorControlHighlight">@color/hcf_nav_pressed</item>
+        <item name="android:buttonBarButtonStyle">@style/HcfDialogButton</item>
     </style>
+
+    <style name="HcfButton" parent="@android:style/Widget.Material.Button">
+        <item name="android:background">@drawable/quick_action_background</item>
+        <item name="android:textColor">@color/hcf_accent_text</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="HcfImageButton" parent="@android:style/Widget.Material.ImageButton">
+        <item name="android:background">@drawable/nav_button_background</item>
+        <item name="android:tint">@color/hcf_cyan_bright</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+
+    <style name="HcfEditText" parent="@android:style/Widget.Material.EditText">
+        <item name="android:textColor">@color/hcf_text</item>
+        <item name="android:textColorHint">@color/hcf_hint</item>
+        <item name="android:colorAccent">@color/hcf_cyan_bright</item>
+    </style>
+
+    <style name="HcfSwitch" parent="@android:style/Widget.Material.CompoundButton.Switch">
+        <item name="android:textColor">@color/hcf_text</item>
+        <item name="android:thumbTint">@color/hcf_switch_thumb</item>
+        <item name="android:trackTint">@color/hcf_switch_track</item>
+    </style>
+
+    <style name="HcfCheckBox" parent="@android:style/Widget.Material.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/hcf_text</item>
+        <item name="android:buttonTint">@color/hcf_choice_tint</item>
+    </style>
+
+    <style name="HcfRadioButton" parent="@android:style/Widget.Material.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/hcf_text</item>
+        <item name="android:buttonTint">@color/hcf_choice_tint</item>
+    </style>
+
+    <style name="HcfDialogButton" parent="@android:style/Widget.Material.Button">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/hcf_cyan_bright</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+
     <style name="HcfDrawerItem" parent="@android:style/Widget.Material.Button">
         <item name="android:textSize">@dimen/drawer_item_text</item>
         <item name="android:textColor">@color/hcf_text</item>
@@ -26,11 +92,15 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/drawer_item_height</item>
         <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:paddingStart">14dp</item>
         <item name="android:paddingEnd">12dp</item>
     </style>
+
     <style name="HcfBottomNavItem" parent="@android:style/Widget.Material.TextView">
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/hcf_muted</item>
