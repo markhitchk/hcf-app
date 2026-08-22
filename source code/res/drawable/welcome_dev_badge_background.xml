@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="@color/hcf_yellow"/>
+    <!-- Bright yellow sampled to match the hazard-yellow used by the HCF puppy logo. -->
+    <solid android:color="#FDD22B"/>
     <corners android:radius="999dp"/>
     <padding
         android:left="11dp"
