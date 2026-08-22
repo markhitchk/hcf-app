@@ -12,6 +12,7 @@
     <color name="hcf_accent_text">#00D8E7</color>
     <color name="hcf_meta">#78D8E4</color>
     <color name="hcf_yellow">#D7B84A</color>
+    <color name="hcf_logo_yellow">#FDD22B</color>
     <color name="hcf_text">#E8F8FF</color>
     <color name="hcf_muted">#AEBBC2</color>
     <color name="hcf_hint">#70818A</color>
