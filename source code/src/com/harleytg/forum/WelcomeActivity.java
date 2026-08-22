@@ -2,6 +2,7 @@ package com.harleytg.forum.dev;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -48,16 +49,16 @@ public final class WelcomeActivity extends ThemedActivity {
         LinearLayout page = new LinearLayout(this);
         page.setOrientation(LinearLayout.VERTICAL);
         page.setGravity(Gravity.CENTER_HORIZONTAL);
-        page.setPadding(dp(18), dp(28), dp(18), dp(28));
+        page.setPadding(dp(16), dp(20), dp(16), dp(24));
         scroll.addView(page, new ScrollView.LayoutParams(-1, -1));
 
         LinearLayout hero = new LinearLayout(this);
         hero.setOrientation(LinearLayout.VERTICAL);
         hero.setGravity(Gravity.CENTER_HORIZONTAL);
         hero.setBackgroundResource(R.drawable.settings_hero_background);
-        hero.setPadding(dp(22), dp(24), dp(22), dp(24));
+        hero.setPadding(dp(20), dp(20), dp(20), dp(20));
         LinearLayout.LayoutParams heroLp = new LinearLayout.LayoutParams(-1, -2);
-        heroLp.topMargin = dp(12);
+        heroLp.topMargin = dp(8);
         page.addView(hero, heroLp);
 
         ImageView logo = new ImageView(this);
@@ -70,22 +71,29 @@ public final class WelcomeActivity extends ThemedActivity {
         eyebrow.setGravity(Gravity.CENTER);
         eyebrow.setTypeface(null, 1);
         LinearLayout.LayoutParams eyebrowLp = new LinearLayout.LayoutParams(-1, -2);
-        eyebrowLp.topMargin = dp(10);
+        eyebrowLp.topMargin = dp(9);
         hero.addView(eyebrow, eyebrowLp);
 
-        TextView title = text("Welcome to Harley's Clan Forum", 23, getColor(R.color.hcf_text));
-        title.setGravity(Gravity.CENTER);
-        title.setTypeface(null, 1);
-        LinearLayout.LayoutParams titleLp = new LinearLayout.LayoutParams(-1, -2);
-        titleLp.topMargin = dp(4);
-        hero.addView(title, titleLp);
+        TextView welcomeTitle = text("Welcome to", 21, getColor(R.color.hcf_text));
+        welcomeTitle.setGravity(Gravity.CENTER);
+        welcomeTitle.setTypeface(null, 1);
+        LinearLayout.LayoutParams welcomeTitleLp = new LinearLayout.LayoutParams(-1, -2);
+        welcomeTitleLp.topMargin = dp(4);
+        hero.addView(welcomeTitle, welcomeTitleLp);
+
+        TextView forumTitle = text("Harley's Clan Forum", 25, getColor(R.color.hcf_cyan_bright));
+        forumTitle.setGravity(Gravity.CENTER);
+        forumTitle.setTypeface(null, 1);
+        LinearLayout.LayoutParams forumTitleLp = new LinearLayout.LayoutParams(-1, -2);
+        forumTitleLp.topMargin = dp(1);
+        hero.addView(forumTitle, forumTitleLp);
 
         if (isDevelopmentBuild()) {
-            TextView badge = text("Development Build / Beta", 10, getColor(R.color.hcf_on_accent));
+            TextView badge = text("Development Build / Beta", 10, Color.rgb(6, 16, 19));
             badge.setGravity(Gravity.CENTER);
             badge.setTypeface(null, 1);
-            badge.setBackgroundResource(R.drawable.dev_badge_background);
-            badge.setPadding(dp(12), dp(5), dp(12), dp(5));
+            badge.setBackgroundResource(R.drawable.welcome_dev_badge_background);
+            badge.setPadding(dp(13), dp(5), dp(13), dp(5));
             LinearLayout.LayoutParams badgeLp = new LinearLayout.LayoutParams(-2, -2);
             badgeLp.topMargin = dp(10);
             hero.addView(badge, badgeLp);
@@ -93,37 +101,73 @@ public final class WelcomeActivity extends ThemedActivity {
 
         TextView welcome = text(
                 "Thanks for using the Harley's Forum app. App Setup can help get Android features ready for this device, but it is completely optional.",
-                13, getColor(R.color.hcf_muted));
+                12,
+                getColor(R.color.hcf_muted)
+        );
         welcome.setGravity(Gravity.CENTER);
-        welcome.setLineSpacing(0.0f, 1.14f);
+        welcome.setLineSpacing(0.0f, 1.12f);
         LinearLayout.LayoutParams welcomeLp = new LinearLayout.LayoutParams(-1, -2);
-        welcomeLp.topMargin = dp(16);
+        welcomeLp.topMargin = dp(14);
         hero.addView(welcome, welcomeLp);
 
         LinearLayout setupInfo = new LinearLayout(this);
         setupInfo.setOrientation(LinearLayout.VERTICAL);
-        setupInfo.setBackgroundResource(R.drawable.quick_action_background);
-        setupInfo.setPadding(dp(16), dp(15), dp(16), dp(15));
+        setupInfo.setBackgroundResource(R.drawable.card_background);
+        setupInfo.setPadding(dp(12), dp(13), dp(12), dp(13));
         LinearLayout.LayoutParams infoLp = new LinearLayout.LayoutParams(-1, -2);
-        infoLp.topMargin = dp(16);
+        infoLp.topMargin = dp(14);
         page.addView(setupInfo, infoLp);
 
-        TextView setupTitle = text("What App Setup helps with", 14, getColor(R.color.hcf_text));
+        TextView setupTitle = text("What App Setup helps with", 14, getColor(R.color.hcf_cyan_bright));
+        setupTitle.setGravity(Gravity.CENTER);
         setupTitle.setTypeface(null, 1);
         setupInfo.addView(setupTitle);
 
-        TextView setupBody = text(
-                "• Forum notifications\n• Opening supported forum links in the app\n• Secure app update permission\n• Background alert health",
-                12, getColor(R.color.hcf_muted));
-        setupBody.setLineSpacing(dp(2), 1.08f);
-        LinearLayout.LayoutParams bodyLp = new LinearLayout.LayoutParams(-1, -2);
-        bodyLp.topMargin = dp(8);
-        setupInfo.addView(setupBody, bodyLp);
+        LinearLayout features = new LinearLayout(this);
+        features.setOrientation(LinearLayout.HORIZONTAL);
+        features.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams featuresLp = new LinearLayout.LayoutParams(-1, -2);
+        featuresLp.topMargin = dp(10);
+        setupInfo.addView(features, featuresLp);
+
+        features.addView(featureTile("Forum\nNotifications", R.drawable.fa_bell),
+                new LinearLayout.LayoutParams(0, -2, 1.0f));
+        features.addView(featureTile("Open Forum\nLinks in App", R.drawable.fa_globe),
+                new LinearLayout.LayoutParams(0, -2, 1.0f));
+        features.addView(featureTile("Secure App\nUpdates", R.drawable.fa_shield),
+                new LinearLayout.LayoutParams(0, -2, 1.0f));
+        features.addView(featureTile("Background\nAlert Health", R.drawable.fa_circle_info),
+                new LinearLayout.LayoutParams(0, -2, 1.0f));
+
+        LinearLayout notePanel = new LinearLayout(this);
+        notePanel.setOrientation(LinearLayout.HORIZONTAL);
+        notePanel.setGravity(Gravity.CENTER_VERTICAL);
+        notePanel.setBackgroundResource(R.drawable.quick_action_background);
+        notePanel.setPadding(dp(13), dp(10), dp(13), dp(10));
+        LinearLayout.LayoutParams notePanelLp = new LinearLayout.LayoutParams(-1, -2);
+        notePanelLp.topMargin = dp(10);
+        page.addView(notePanel, notePanelLp);
+
+        ImageView noteIcon = new ImageView(this);
+        noteIcon.setImageResource(R.drawable.fa_circle_info);
+        noteIcon.setImageTintList(ColorStateList.valueOf(getColor(R.color.hcf_cyan_bright)));
+        noteIcon.setContentDescription(null);
+        LinearLayout.LayoutParams noteIconLp = new LinearLayout.LayoutParams(dp(24), dp(24));
+        noteIconLp.rightMargin = dp(10);
+        notePanel.addView(noteIcon, noteIconLp);
+
+        TextView note = text(
+                "No worries — you can always open App Setup later from the app drawer → App Setup.",
+                11,
+                getColor(R.color.hcf_muted)
+        );
+        note.setLineSpacing(0.0f, 1.08f);
+        notePanel.addView(note, new LinearLayout.LayoutParams(0, -2, 1.0f));
 
         Button startSetup = primaryButton("Start App Setup");
         startSetup.setOnClickListener(v -> startAppSetup());
         LinearLayout.LayoutParams startLp = new LinearLayout.LayoutParams(-1, dp(52));
-        startLp.topMargin = dp(18);
+        startLp.topMargin = dp(12);
         page.addView(startSetup, startLp);
 
         Button continueButton = secondaryButton("Continue Without App Setup");
@@ -132,22 +176,35 @@ public final class WelcomeActivity extends ThemedActivity {
         continueLp.topMargin = dp(9);
         page.addView(continueButton, continueLp);
 
-        TextView note = text(
-                "🐾 No worries — you can always open App Setup later from the app drawer → App Setup.",
-                11, getColor(R.color.hcf_hint));
-        note.setGravity(Gravity.CENTER);
-        note.setLineSpacing(0.0f, 1.1f);
-        LinearLayout.LayoutParams noteLp = new LinearLayout.LayoutParams(-1, -2);
-        noteLp.topMargin = dp(14);
-        page.addView(note, noteLp);
-
         TextView footer = text(BuildInfo.VERSION_BUILD_LINE, 9, getColor(R.color.hcf_hint));
         footer.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams footerLp = new LinearLayout.LayoutParams(-1, -2);
-        footerLp.topMargin = dp(20);
+        footerLp.topMargin = dp(14);
         page.addView(footer, footerLp);
 
         return scroll;
+    }
+
+    private View featureTile(String label, int iconRes) {
+        LinearLayout tile = new LinearLayout(this);
+        tile.setOrientation(LinearLayout.VERTICAL);
+        tile.setGravity(Gravity.CENTER_HORIZONTAL);
+        tile.setPadding(dp(3), dp(2), dp(3), dp(2));
+
+        ImageView icon = new ImageView(this);
+        icon.setImageResource(iconRes);
+        icon.setImageTintList(ColorStateList.valueOf(getColor(R.color.hcf_cyan_bright)));
+        icon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        icon.setContentDescription(label.replace("\n", " "));
+        tile.addView(icon, new LinearLayout.LayoutParams(dp(28), dp(28)));
+
+        TextView labelView = text(label, 9, getColor(R.color.hcf_text));
+        labelView.setGravity(Gravity.CENTER);
+        labelView.setTypeface(null, 1);
+        LinearLayout.LayoutParams labelLp = new LinearLayout.LayoutParams(-1, -2);
+        labelLp.topMargin = dp(5);
+        tile.addView(labelView, labelLp);
+        return tile;
     }
 
     private void startAppSetup() {
@@ -183,6 +240,7 @@ public final class WelcomeActivity extends ThemedActivity {
         view.setText(value);
         view.setTextSize(sp);
         view.setTextColor(color);
+        view.setLineSpacing(0.0f, 1.06f);
         return view;
     }
 
