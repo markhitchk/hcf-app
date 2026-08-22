@@ -8,6 +8,7 @@ on:
       - 'configs/app-links/**'
       - 'README.md'
       - '.github/scripts/verify-hcf-alerts-ui.py'
+      - '.github/scripts/verify-hcf-theme-ui.py'
       - '.github/scripts/verify-release-readiness.py'
       - '.github/workflows/build-dev-v10000092.yml'
   workflow_dispatch:
@@ -27,6 +28,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 .github/scripts/verify-hcf-alerts-ui.py 'source code'
+          python3 .github/scripts/verify-hcf-theme-ui.py 'source code'
           python3 .github/scripts/verify-release-readiness.py .
           python3 -m json.tool configs/app-links/assetlinks.json >/dev/null
 
@@ -80,6 +82,8 @@ jobs:
           grep -Fq 'APK SHA-256 does not match' "$OUT/DEX-STRINGS.txt"
           grep -Fq 'App Setup' "$OUT/DEX-STRINGS.txt"
           grep -Fq 'HCF Alerts are the real forum alerts.' "$OUT/DEX-STRINGS.txt"
+          grep -Fq "Harley's Clan Forum" "$OUT/DEX-STRINGS.txt"
+          grep -Fq 'Development Build / Beta' "$OUT/DEX-STRINGS.txt"
           ! grep -Fq 'Method not decompiled' "$OUT/DEX-STRINGS.txt"
           ! grep -Fq 'Code decompiled incorrectly' "$OUT/DEX-STRINGS.txt"
           sha256sum "$APK" | tee "$OUT/SHA256SUMS.txt"
