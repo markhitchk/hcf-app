@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.HCF" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:alertDialogTheme">@style/Theme.HCF.Dialog.Alert</item>
         <item name="android:fontFamily">sans</item>
+        <item name="android:textColorPrimary">@color/hcf_text</item>
+        <item name="android:textColorSecondary">@color/hcf_muted</item>
+        <item name="android:textColorHint">@color/hcf_hint</item>
         <item name="android:colorAccent">@color/hcf_cyan</item>
+        <item name="android:colorControlNormal">@color/hcf_muted</item>
+        <item name="android:colorControlActivated">@color/hcf_cyan_bright</item>
+        <item name="android:colorControlHighlight">@color/hcf_nav_pressed</item>
+        <item name="android:buttonStyle">@style/HcfButton</item>
+        <item name="android:imageButtonStyle">@style/HcfImageButton</item>
+        <item name="android:editTextStyle">@style/HcfEditText</item>
+        <item name="android:switchStyle">@style/HcfSwitch</item>
+        <item name="android:checkboxStyle">@style/HcfCheckBox</item>
+        <item name="android:radioButtonStyle">@style/HcfRadioButton</item>
         <item name="android:statusBarColor">@color/hcf_bg</item>
         <item name="android:navigationBarColor">@color/hcf_bg</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:forceDarkAllowed">false</item>
         <item name="android:windowSplashScreenBackground">@color/hcf_bg</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_empty_icon</item>
         <item name="android:windowSplashScreenIconBackgroundColor">@color/hcf_bg</item>
