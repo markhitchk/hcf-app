@@ -172,8 +172,12 @@ final class ThemeManager {
                 return (AUTO_FORUM.equals(string) || AUTO_PHONE.equals(string) || LIGHT.equals(string)
                         || DARK.equals(string) || AMOLED.equals(string)) ? string : DARK;
             }
-            sharedPreferences.edit().putString("app_theme", AUTO_FORUM).apply();
-            return AUTO_FORUM;
+
+            // Older beta snapshots stored "system". Restore those upgrades to
+            // the HCF dev branch's black/cyan/yellow native theme instead of
+            // silently switching their app chrome to a light forum/phone mode.
+            sharedPreferences.edit().putString("app_theme", DARK).apply();
+            return DARK;
         } catch (Throwable unused) {
             if (sharedPreferences != null) {
                 try {
